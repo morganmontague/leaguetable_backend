@@ -22,3 +22,6 @@ class Team(models.Model):
     goals_scored = models.PositiveIntegerField()
     rank = models.PositiveIntegerField()
     points =models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.team_name
