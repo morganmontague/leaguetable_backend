@@ -6,7 +6,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = "__all__"
+        fields = ["username", "is_active", "first_name", "last_name"]
 
 
 class TeamSerializer(serializers.ModelSerializer):
