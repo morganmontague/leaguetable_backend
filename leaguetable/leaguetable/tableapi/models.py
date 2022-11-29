@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class CustomUser(AbstractUser):
     pass
@@ -26,12 +27,15 @@ class Team(models.Model):
     def __str__(self):
         return self.team_name
 
-class Player (models.Model):
-    player_name = CharField(max_length=200, default="new guy"),
+class Player(models.Model):
+    player_name = models.CharField(max_length=200, default="new guy")
     # team_id 
-    jersey_no = PositiveIntegerField(MaxValueValidator=99),
+    jersey_no = models.PositiveIntegerField(validators= [MaxValueValidator(99)])
     # nationality_id int,
     # position_id int,
-    injured = BooleanField(),
-    age = PositiveIntegerField(MinimumValueValidator = 16, MaxValueValidator=99)
+    injured = models.BooleanField()
+    age = models.PositiveIntegerField(validators= [MinValueValidator(16), MaxValueValidator(45)])
+
+    def __str__(self):
+        return self.player_name + ' ' + str(self.jersey_no)
 

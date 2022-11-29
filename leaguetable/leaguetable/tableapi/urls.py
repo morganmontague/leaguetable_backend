@@ -5,7 +5,7 @@ from rest_framework import routers
 router = routers.SimpleRouter()
 router.register(r'teams', TeamViewSet)
 router.register(r'customusers', CustomUserViewSet)
-# router.register(r'genres', GenreViewSet)
+router.register(r'players', PlayerViewSet)
 # router.register(r'artists', ArtistViewSet)
 # router.register(r'albums', AlbumViewSet)
 # router.register(r'playlists', PlaylistViewSet)
