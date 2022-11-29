@@ -21,8 +21,16 @@ class TeamSerializer(serializers.ModelSerializer):
         data['games_played'] = 0 if data.get('wins' + 'losses' + 'ties') == 0 else (data.get('wins') + data.get('ties') + data.get('losses')) 
         return data
 
-class PlayerSerializer(serializers.ModelSerializer):
+class PositionSerializer(serializers.ModelSerializer):
     # points = PointListingField(queryset=Team.objects.all())
+    class Meta:
+        model = Position
+        fields = ["position"]
+
+
+class PlayerSerializer(serializers.ModelSerializer):
+    position = PositionListingField(read_only=True)
+    
     class Meta:
         model = Player
         fields = "__all__"

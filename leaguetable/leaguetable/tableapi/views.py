@@ -20,3 +20,8 @@ class PlayerViewSet(ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+
+class PositionViewSet(ModelViewSet):
+    queryset = Position.objects.all()
+    serializer_class = PositionSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']

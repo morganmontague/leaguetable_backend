@@ -32,10 +32,21 @@ class Player(models.Model):
     # team_id 
     jersey_no = models.PositiveIntegerField(validators= [MaxValueValidator(99)])
     # nationality_id int,
-    # position_id int,
+    position_id = models.ForeignKey('position', on_delete=models.CASCADE, related_name="player_position", null=True)
     injured = models.BooleanField()
     age = models.PositiveIntegerField(validators= [MinValueValidator(16), MaxValueValidator(45)])
 
     def __str__(self):
-        return self.player_name + ' ' + str(self.jersey_no)
+        return self.player_name + ': ' + str(self.jersey_no)
 
+class Position(models.Model):
+    position = models.CharField(max_length=100, default='Soccer Player')
+
+    def __str__(self):
+        return self.position
+
+class Nationality(models.Model):
+    nationality = models.CharField(max_length=100, default='Unknown')
+
+    def __str__(self):
+        return self.nationality
