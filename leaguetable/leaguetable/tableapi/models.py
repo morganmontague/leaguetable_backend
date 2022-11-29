@@ -6,7 +6,7 @@ class CustomUser(AbstractUser):
     pass
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return f"{self.first_name} {self.last_name}"
 
 
 class Team(models.Model):
@@ -24,8 +24,9 @@ class Team(models.Model):
     rank = models.PositiveIntegerField() 
     points = models.PositiveIntegerField()
 
+
     def __str__(self):
-        return self.team_name
+        return f"{self.team_name}"
 
 class Player(models.Model):
     player_name = models.CharField(max_length=200, default="new guy")
@@ -37,13 +38,13 @@ class Player(models.Model):
     age = models.PositiveIntegerField(validators= [MinValueValidator(16), MaxValueValidator(45)])
 
     def __str__(self):
-        return self.player_name + ': Jersey Number is ' + str(self.jersey_no)
+        return f"{self.player_name}: Jersey Number is {self.jersey_no}"
 
 class Position(models.Model):
     position = models.CharField(max_length=100, default='Soccer Player')
 
     def __str__(self):
-        return self.position
+        return f"{self.position}"
 
 class Nationality(models.Model):
     nationality = models.CharField(max_length=100, default='Unknown')
@@ -51,6 +52,8 @@ class Nationality(models.Model):
     def __str__(self):
         return self.nationality
 
-class team_players(models.Model):
+class Team_Players(models.Model):
     player = models.ForeignKey(Player, on_delete=models.PROTECT)
     team = models.ForeignKey(Team, on_delete=models.PROTECT)
+
+    

@@ -14,6 +14,20 @@ from .models import *
 #     def to_internal_value(self, data):
 #         return Team.objects.get(points=data)
 
+class PlayerListingField(serializers.RelatedField):
+    def to_representation(self, instance):
+        return instance.player_name
+
+    def to_internal_value(self, data):
+        return Player.objects.get(player_name=data)
+
+class TeamListingField(serializers.RelatedField):
+    def to_representation(self, instance):
+        return instance.team_name
+
+    def to_internal_value(self, data):
+        return Team.objects.get(team_name=data)
+
 class PositionListingField(serializers.RelatedField):
     def to_representation(self, instance):
         return instance.position

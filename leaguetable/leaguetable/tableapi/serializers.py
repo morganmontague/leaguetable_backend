@@ -8,9 +8,25 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ["username", "is_active", "first_name", "last_name"]
 
+class Team_PlayersSerializer(serializers.ModelSerializer):
+    # player = PlayerListingField(many=True, read_only=True)
+    # team = TeamListingField(many=True, read_only=True)
+
+    class Meta:
+        model = Team_Players
+        fields = "__all__"
+
 
 class TeamSerializer(serializers.ModelSerializer):
-    # points = PointListingField(queryset=Team.objects.all())
+    players = serializers.SerializerMethodField()
+    
+    def get_players(self, obj):
+        team = obj.id
+        players = Team_Players.objects.filter(team=team)
+        team_players = []
+        for player in players:
+            team_players.append(f"{player.player}")
+        return team_players
     class Meta:
         model = Team
         fields = "__all__"
@@ -37,6 +53,7 @@ class NationalitySerializer(serializers.ModelSerializer):
 class PlayerSerializer(serializers.ModelSerializer):
     position = PositionListingField(read_only=True)
     nationality = NationalityListingField(read_only=True)
+
     
     class Meta:
         model = Player
