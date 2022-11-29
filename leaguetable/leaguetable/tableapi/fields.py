@@ -13,3 +13,14 @@ class PointListingField(serializers.RelatedField):
 
     def to_internal_value(self, data):
         return Team.objects.get(points=data)
+
+# class PointsList (serializers.SerializerMethodField):
+#     def get_speed(self, obj):
+#         if obj.speed == 0:
+#             return "slow"
+#         else:
+#             return "fast"
+
+#     class Meta:
+#         model = Car
+#         fields = ('name', 'speed')
