@@ -31,8 +31,8 @@ class Player(models.Model):
     player_name = models.CharField(max_length=200, default="new guy")
     # team_id 
     jersey_no = models.PositiveIntegerField(validators= [MaxValueValidator(99)])
-    nationality = models.ForeignKey('nationality', on_delete=models.CASCADE, related_name="player_nation", null=True)
-    position = models.ForeignKey('position', on_delete=models.CASCADE, related_name="player_position", null=True)
+    nationality_id = models.ForeignKey('nationality', on_delete=models.CASCADE, related_name="player_nation", null=True)
+    position_id = models.ForeignKey('position', on_delete=models.CASCADE, related_name="player_position", null=True)
     injured = models.BooleanField()
     age = models.PositiveIntegerField(validators= [MinValueValidator(16), MaxValueValidator(45)])
 
