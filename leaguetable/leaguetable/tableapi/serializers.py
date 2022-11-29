@@ -28,8 +28,15 @@ class PositionSerializer(serializers.ModelSerializer):
         fields = ["position"]
 
 
+class NationalitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Nationality
+        fields =["nationality"]
+
 class PlayerSerializer(serializers.ModelSerializer):
     position = PositionListingField(read_only=True)
+    nationality = NationalityListingField(read_only=True)
     
     class Meta:
         model = Player

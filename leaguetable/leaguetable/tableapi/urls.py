@@ -7,7 +7,7 @@ router.register(r'teams', TeamViewSet)
 router.register(r'customusers', CustomUserViewSet)
 router.register(r'players', PlayerViewSet)
 router.register(r'positions', PositionViewSet)
-# router.register(r'albums', AlbumViewSet)
+router.register(r'nationalities', NationalityViewSet)
 # router.register(r'playlists', PlaylistViewSet)
 # router.register(r'shortsongs', ShortSongViewSet)
 

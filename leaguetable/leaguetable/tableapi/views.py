@@ -25,3 +25,8 @@ class PositionViewSet(ModelViewSet):
     queryset = Position.objects.all()
     serializer_class = PositionSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+
+class NationalityViewSet(ModelViewSet):
+    queryset = Nationality.objects.all()
+    serializer_class = NationalitySerializer
+    http_method_names = ['get', 'post', 'put', 'delete']

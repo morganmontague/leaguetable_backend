@@ -5,4 +5,5 @@ admin.site.register(CustomUser)
 admin.site.register(Team)
 admin.site.register(Player)
 admin.site.register(Position)
+admin.site.register(Nationality)
 # Register your models here.

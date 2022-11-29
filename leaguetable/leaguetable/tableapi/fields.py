@@ -20,3 +20,10 @@ class PositionListingField(serializers.RelatedField):
 
     def to_internal_value(self, data):
         return Position.objects.get(position=data)
+
+class NationalityListingField(serializers.RelatedField):
+    def to_representation(self, instance):
+        return instance.nationality
+
+    def to_internal_value(self, data):
+        return Nationality.objects.get(nationality=data)
