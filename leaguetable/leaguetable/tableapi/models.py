@@ -22,19 +22,16 @@ class Team(models.Model):
     goals_scored = models.PositiveIntegerField()
     rank = models.PositiveIntegerField() 
     points = models.PositiveIntegerField()
-    
-    # def save(self, *args, **kwargs):
-    #     self.points = (self.wins *3) +self.ties
-    #     self.games_played = self.wins +self.losses +self.ties
-    #     super(Team, self).save(*args, **kwargs)
-    #     return self.points, self.games_played
-    # def points(self):
-    #     points = (self.wins)*3 + self.ties
-    #     return points
-    # def games_played(self):
-    #     games_played = self.wins +self.losses +self.ties
-    #     return games_played
 
     def __str__(self):
         return self.team_name
+
+class Player (models.Model):
+    player_name = CharField(max_length=200, default="new guy"),
+    # team_id 
+    jersey_no = PositiveIntegerField(MaxValueValidator=99),
+    # nationality_id int,
+    # position_id int,
+    injured = BooleanField(),
+    age = PositiveIntegerField(MinimumValueValidator = 16, MaxValueValidator=99)
 
