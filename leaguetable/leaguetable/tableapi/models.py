@@ -38,7 +38,7 @@ class Player(models.Model):
     age = models.PositiveIntegerField(validators= [MinValueValidator(16), MaxValueValidator(45)])
 
     def __str__(self):
-        return f"{self.player_name}: Jersey Number is {self.jersey_no}"
+        return f"{self.player_name} is {self.nationality_id} and his jersey Number is {self.jersey_no}"
 
 class Position(models.Model):
     position = models.CharField(max_length=100, default='Soccer Player')

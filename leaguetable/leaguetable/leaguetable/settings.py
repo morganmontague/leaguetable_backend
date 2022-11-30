@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-rhqp%4^*b21oxdgtn)^2d1ar7i*-nhvslll=9tz*aajd8h031d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+X_FRAME_OPTIONS = "same-origin"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 AUTH_USER_MODEL  = 'tableapi.CustomUser'
 
@@ -33,6 +36,7 @@ AUTH_USER_MODEL  = 'tableapi.CustomUser'
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,10 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tableapi',
     'rest_framework',
-    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -136,3 +140,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = DEBUG
+
+CORS_ALLOWED_ORIGINS = [   ###
+    'http://localhost:8000',
+    'https://*.gitpod.io'
+]
