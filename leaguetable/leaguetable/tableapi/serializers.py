@@ -51,6 +51,9 @@ class TeamSerializer(serializers.ModelSerializer):
         for player in players:
             team_players.append(f"{player.player}")
         return team_players
+
+
+
     class Meta:
         model = Team
         fields = "__all__"
