@@ -38,7 +38,7 @@ class Player(models.Model):
     age = models.PositiveIntegerField(validators= [MinValueValidator(16), MaxValueValidator(45)])
 
     def __str__(self):
-        return f"{self.jersey_no}: {self.player_name}"
+        return f"Player: {self.player_name}, Position {self.position_id}. "
 
 class Position(models.Model):
     position = models.CharField(max_length=100, default='Soccer Player')
@@ -55,5 +55,16 @@ class Nationality(models.Model):
 class Team_Players(models.Model):
     player = models.ForeignKey(Player, on_delete=models.PROTECT)
     team = models.ForeignKey(Team, on_delete=models.PROTECT)
+
+class Venue(models.Model):
+    venue_name = models.CharField(max_length=200, default="Stadium")
+    address = models.CharField(max_length=200, default="Doha, Qatar")
+
+# class Goal_detail(models.Model):
+#   game_id = models.ForeignKey(Game, on_delete)
+#   player_id
+#   team_id
+#   goal_time
+#   goal_half
 
     
