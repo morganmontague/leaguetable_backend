@@ -9,7 +9,7 @@ router.register(r'players', PlayerViewSet)
 router.register(r'positions', PositionViewSet)
 router.register(r'nationalities', NationalityViewSet)
 router.register(r'team_players', Team_PlayersViewSet)
-# router.register(r'shortsongs', ShortSongViewSet)
+router.register(r'venues', VenueViewSet)
 
 
 

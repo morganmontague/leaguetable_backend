@@ -60,6 +60,16 @@ class Venue(models.Model):
     venue_name = models.CharField(max_length=200, default="Stadium")
     address = models.CharField(max_length=200, default="Doha, Qatar")
 
+class Game(models.Model):
+
+  date_of_match = models.DateTimeField(auto_now=True, null=True)
+  results = [
+    (WIN, 'Win'),
+    (LOST, 'Lost'),
+    (DRAW, 'Draw'),
+  ]
+  goals_score = models.CharField(max_length=100, default='0:0')
+  venue_id = models.ForeignKey(Venue, on_delete=models.PROTECT)
 # class Goal_detail(models.Model):
 #   game_id = models.ForeignKey(Game, on_delete)
 #   player_id

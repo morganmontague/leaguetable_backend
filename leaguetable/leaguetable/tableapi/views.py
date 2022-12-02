@@ -36,3 +36,8 @@ class Team_PlayersViewSet(ModelViewSet):
     queryset = Nationality.objects.all()
     serializer_class = Team_PlayersSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+
+class VenueViewSet(ModelViewSet):
+    queryset = Nationality.objects.all()
+    serializer_class = Team_PlayersSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']

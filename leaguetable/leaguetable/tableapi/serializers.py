@@ -63,3 +63,10 @@ class TeamSerializer(serializers.ModelSerializer):
         data['points'] = 0 if data.get('wins' + 'losses' + 'ties') == 0 else (data.get('wins')*3 + data.get('ties'))
         data['games_played'] = 0 if data.get('wins' + 'losses' + 'ties') == 0 else (data.get('wins') + data.get('ties') + data.get('losses')) 
         return data
+
+class VenueSerializer(serializers.ModelSerializer):
+    venue = VenueListingField(read_only=True)
+
+    class Meta:
+        model = Player
+        fields = "__all__"

@@ -7,4 +7,5 @@ admin.site.register(Player)
 admin.site.register(Position)
 admin.site.register(Nationality)
 admin.site.register(Team_Players)
+admin.site.register(Venue)
 # Register your models here.
