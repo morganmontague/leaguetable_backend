@@ -39,6 +39,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = CustomUser
 #         fields = ["username", "is_active", "first_name", "last_name"]
+class Team_GamesSerializer(serializers.ModelSerializer):
+    game = GameListingField(many=True, read_only=True)
+    team = TeamListingField(many=True, read_only=True)
+    user = CustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = Team_Players
+        fields = "__all__"
+
+
 
 class Team_PlayersSerializer(serializers.ModelSerializer):
     player = PlayerListingField(many=True, read_only=True)
@@ -75,6 +85,7 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 class TeamSerializer(serializers.ModelSerializer):
     players = serializers.SerializerMethodField()
+    games = serializers.SerializerMethodField()
     
     def get_players(self, obj):
         team = obj.id
@@ -84,7 +95,13 @@ class TeamSerializer(serializers.ModelSerializer):
             team_players.append(f"{player.player}")
         return team_players
 
-
+    def get_games(self, obj):
+        team = obj.id
+        games = Team_Games.objects.filter(team=team)
+        team_games = []
+        for game in games:
+            team_games.append(f"{game.game}")
+        return team_games
 
     class Meta:
         model = Team
@@ -100,5 +117,12 @@ class VenueSerializer(serializers.ModelSerializer):
     venue = VenueListingField(read_only=True)
 
     class Meta:
-        model = Player
+        model = Venue
+        fields = "__all__"
+
+class GameSerializer(serializers.ModelSerializer):
+    game = GameListingField(read_only=True)
+
+    class Meta:
+        model = Game
         fields = "__all__"

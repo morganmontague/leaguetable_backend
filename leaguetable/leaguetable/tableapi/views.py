@@ -66,7 +66,12 @@ class VenueViewSet(ModelViewSet):
     serializer_class = VenueSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
 
-# class GameViewSet(ModelViewSet):
-#     queryset = Game.objects.all()
-#     serializer_class = GameSerializer
-#     http_method_names = ['get', 'post', 'put', 'delete']
+class GameViewSet(ModelViewSet):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']
+
+class Team_GamesViewSet(ModelViewSet):
+    queryset = Team_Games.objects.all()
+    serializer_class = Team_GamesSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']

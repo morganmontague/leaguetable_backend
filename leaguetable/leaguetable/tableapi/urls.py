@@ -11,6 +11,8 @@ router.register(r'positions', PositionViewSet)
 router.register(r'nationalities', NationalityViewSet)
 router.register(r'team_players', Team_PlayersViewSet)
 router.register(r'venues', VenueViewSet)
+router.register(r'games', GameViewSet)
+router.register(r'team_games', Team_GamesViewSet)
 
 
 

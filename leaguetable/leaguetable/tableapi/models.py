@@ -64,22 +64,17 @@ class Venue(models.Model):
         return self.venue_name
 
 class Game(models.Model):
-    WIN = 'W'
-    LOST = 'L'
-    DRAW ='D'
-
     date_of_match = models.DateTimeField(auto_now=True, null=True)
-    results_choice = [
-    (WIN, 'Win'),
-    (LOST, 'Lost'),
-    (DRAW, 'Draw'),
-]
-    game_result = models.CharField(max_length=1,  choices=results_choice, default='D')
-    goals_score = models.CharField(max_length=100, default='0:0')
+    goals_scored = models.PositiveIntegerField(default = 0)
+    goal_conceded = models.PositiveIntegerField(default = 0)
     venue_id = models.ForeignKey(Venue, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.game_result
+        return f"Goals Scored {self.goals_scored} and Goals Conceded {self.goal_conceded}"
+
+class Team_Games(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.PROTECT)
+    team = models.ForeignKey(Team, on_delete=models.PROTECT)
 
 
 # class Goal_detail(models.Model):
