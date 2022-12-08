@@ -33,6 +33,10 @@ class TeamViewSet(ModelViewSet):
     serializer_class = TeamSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
 
+    def update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return super().update(request, *args, **kwargs)
+
 
 class CustomUserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
