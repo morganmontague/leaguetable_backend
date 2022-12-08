@@ -7,15 +7,13 @@ from rest_framework.views import APIView
 from .models import *
 from .serializers import *
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
-class HelloWorldView(APIView):
-
-    def get(self, request):
-        return Response(data={"hello":"world"}, status=status.HTTP_200_OK)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
@@ -75,3 +73,23 @@ class Team_GamesViewSet(ModelViewSet):
     queryset = Team_Games.objects.all()
     serializer_class = Team_GamesSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+
+@api_view(['GET'])
+def getUserTeam(request):
+    print(request)
+    # user = CustomUser.objects.get(id = request.user.id)
+    teams = Team.objects.filter(user_id = request.user.id)
+    print(teams)
+    user_team = []
+    for team in teams:
+        try:
+            # this_user = CustomUser.objects.get(id=customUser.id)
+            # print(this_user)
+            serializer = TeamSerializer(team)
+
+            this_user.append(serializer.data)
+        except:
+            return Response(serializer.data)
+
+
+    return Response(this_user)

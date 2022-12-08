@@ -23,7 +23,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'username', 'password', "is_active", "first_name", "last_name")
+        fields = "__all__"
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -51,8 +51,8 @@ class Team_GamesSerializer(serializers.ModelSerializer):
 
 
 class Team_PlayersSerializer(serializers.ModelSerializer):
-    player = PlayerListingField(many=True, read_only=True)
-    team = TeamListingField(many=True, read_only=True)
+    # player = PlayerListingField(many=True, read_only=True)
+    # team = TeamListingField(many=True, read_only=True)
     user = CustomUserSerializer(read_only=True)
 
     class Meta:
