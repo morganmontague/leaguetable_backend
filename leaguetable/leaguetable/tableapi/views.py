@@ -9,6 +9,7 @@ from .serializers import *
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+from django_filters.rest_framework import DjangoFilterBackend
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
@@ -47,6 +48,12 @@ class PlayerViewSet(ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
     http_method_names = ['get', 'post', 'put', 'delete']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['player_name']
+    
+    def update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        return super().update(request, *args, **kwargs)
 
 class PositionViewSet(ModelViewSet):
     queryset = Position.objects.all()

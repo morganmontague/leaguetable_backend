@@ -70,7 +70,7 @@ class Game(models.Model):
     venue_id = models.ForeignKey(Venue, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f"Goals scored was {self.goals_scored} and goals conceded was {self.goal_conceded}"
+        return f"goals scored was {self.goals_scored} and goals conceded was {self.goal_conceded}"
 
 class Team_Games(models.Model):
     game = models.ForeignKey(Game, on_delete=models.PROTECT)

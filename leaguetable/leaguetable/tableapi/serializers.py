@@ -103,6 +103,14 @@ class TeamSerializer(serializers.ModelSerializer):
             team_games.append(f"{game.game}")
         return team_games
 
+    def get_goals(self, obj):
+        team = obj.id
+        goals = Team_Games.objects.filter(team=team)
+        team_goals = []
+        for goal in goals:
+            team_goals.append(f"{game.goal}")
+        return team_goals
+
     class Meta:
         model = Team
         fields = "__all__"
@@ -110,7 +118,8 @@ class TeamSerializer(serializers.ModelSerializer):
     def to_representation(self, data):
         data = super(TeamSerializer, self).to_representation(data)
         data['points'] = 0 if data.get('wins' + 'losses' + 'ties') == 0 else (data.get('wins')*3 + data.get('ties'))
-        data['games_played'] = 0 if data.get('wins' + 'losses' + 'ties') == 0 else (data.get('wins') + data.get('ties') + data.get('losses')) 
+        data['games_played'] = 0 if data.get('wins' + 'losses' + 'ties') == 0 else (data.get('wins') + data.get('ties') + data.get('losses'))
+        # data['goals_scored'] = data.get(goals_scored - goal_conceded)
         return data
 
 class VenueSerializer(serializers.ModelSerializer):

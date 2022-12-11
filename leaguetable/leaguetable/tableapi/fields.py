@@ -52,8 +52,8 @@ class VenueListingField(serializers.RelatedField):
 class GameListingField(serializers.RelatedField):
     def to_representation(self, instance):
         return instance.game
-
     def to_internal_value(self, data):
         return Game.objects.get(goals_scored=data)
     def to_internal_value(self, data):
         return Game.objects.get(goals_conceded=data)
+
