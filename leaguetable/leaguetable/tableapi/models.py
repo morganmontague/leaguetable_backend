@@ -21,8 +21,11 @@ class Team(models.Model):
     ties = models.PositiveIntegerField()
     games_played = models.PositiveIntegerField()
     goals_scored = models.PositiveIntegerField()
+    goals_lost = models.PositiveIntegerField(default=0)
+    goal_dif = models.IntegerField(default=0)
     rank = models.PositiveIntegerField() 
     points = models.PositiveIntegerField()
+
 
 
     def __str__(self):
